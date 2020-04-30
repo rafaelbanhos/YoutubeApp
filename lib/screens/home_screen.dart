@@ -4,6 +4,7 @@ import 'package:youtubeapp/blocs/favorite_bloc.dart';
 import 'package:youtubeapp/blocs/videos_bloc.dart';
 import 'package:youtubeapp/delegates/data_search.dart';
 import 'package:youtubeapp/models/video.dart';
+import 'package:youtubeapp/screens/favorites_screen.dart';
 import 'package:youtubeapp/widgets/video_tile.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,14 +27,19 @@ class HomeScreen extends StatelessWidget {
               stream: BlocProvider.of<FavoriteBloc>(context).outFav,
               initialData: {},
               builder: (context, snapshot) {
-                if (snapshot.hasData) return Text("${snapshot.data.length}");
-                else return Container();
+                if (snapshot.hasData)
+                  return Text("${snapshot.data.length}");
+                else
+                  return Container();
               },
             ),
           ),
           IconButton(
             icon: Icon(Icons.star),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => FavoritesScreen()));
+            },
           ),
           IconButton(
             icon: Icon(Icons.search),
@@ -55,7 +61,7 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 if (index < snapshot.data.length) {
                   return VideoTile(snapshot.data[index]);
-                } else if (index > 1){
+                } else if (index > 1) {
                   bloc.inSearch.add(null);
                   return Container(
                     height: 40,
