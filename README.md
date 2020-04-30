@@ -2,6 +2,14 @@
 
 Simple app using bloc pattern
 
+How to use:
+
+In the api.dart file remember to place your youtube Api Key.
+
+Put your key in place of API_KEY
+
+Enjoy!
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
